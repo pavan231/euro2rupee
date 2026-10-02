@@ -3,91 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Euro to Rupee Converter | EUR to INR</title>
-  <meta name="description" content="Simple live currency converter for Euro to Indian Rupee and other currencies.">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Euro2Rupee community dashboard — currency, announcements and events in one place.">
+  <title>Euro2Rupee — Community Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container nav">
-      <a class="logo" href="/">Euro<span>2</span>Rupee</a>
-      <nav>
-        <a href="#converter">Converter</a>
-        <a href="#about">About</a>
-      </nav>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">€₹</div>
+      <div>
+        <h1>Euro2Rupee</h1>
+        <p>Useful information in one place</p>
+      </div>
+    </div>
+    <div class="header-info">
+      <span id="today"></span>
+      <span class="location">🇮🇪 Dublin</span>
     </div>
   </header>
 
-  <main>
-    <section class="hero" id="converter">
-      <div class="container">
-        <p class="eyebrow">CURRENCY CONVERTER</p>
-        <h1>Euro to Rupee Converter</h1>
-        <p class="subtitle">Convert EUR to INR quickly using the latest available exchange rate.</p>
-
-        <div class="converter-card">
-          <div class="field">
-            <label for="amount">Amount</label>
-            <input id="amount" type="number" min="0" step="0.01" value="100" placeholder="Enter amount">
-          </div>
-
-          <div class="currency-row">
-            <div class="field">
-              <label for="from">From</label>
-              <select id="from">
-                <option value="EUR">🇪🇺 EUR — Euro</option>
-                <option value="USD">🇺🇸 USD — US Dollar</option>
-                <option value="GBP">🇬🇧 GBP — British Pound</option>
-                <option value="INR">🇮🇳 INR — Indian Rupee</option>
-                <option value="AUD">🇦🇺 AUD — Australian Dollar</option>
-                <option value="CAD">🇨🇦 CAD — Canadian Dollar</option>
-              </select>
-            </div>
-
-            <button id="swap" class="swap" aria-label="Swap currencies">⇄</button>
-
-            <div class="field">
-              <label for="to">To</label>
-              <select id="to">
-                <option value="INR">🇮🇳 INR — Indian Rupee</option>
-                <option value="EUR">🇪🇺 EUR — Euro</option>
-                <option value="USD">🇺🇸 USD — US Dollar</option>
-                <option value="GBP">🇬🇧 GBP — British Pound</option>
-                <option value="AUD">🇦🇺 AUD — Australian Dollar</option>
-                <option value="CAD">🇨🇦 CAD — Canadian Dollar</option>
-              </select>
-            </div>
-          </div>
-
-          <button id="convert" class="convert-btn">Convert</button>
-
-          <div id="result" class="result" aria-live="polite">
-            <span>100 EUR</span>
-            <strong>Loading...</strong>
-          </div>
-
-          <p id="rateInfo" class="rate-info">Fetching current exchange rate...</p>
-        </div>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">COMMUNITY DASHBOARD</span>
+        <h2>Welcome 👋</h2>
+        <p>Currency, local announcements and upcoming events — all in one simple dashboard.</p>
       </div>
+      <div class="hero-badge">Live &amp; useful</div>
     </section>
 
-    <section class="info" id="about">
-      <div class="container">
-        <h2>Euro to Indian Rupee</h2>
-        <p>
-          Euro2Rupee provides a simple way to check currency conversions between
-          the Euro, Indian Rupee and other major currencies. Exchange rates can
-          change throughout the day, so use the displayed rate as an indication
-          rather than a guaranteed bank or transfer rate.
-        </p>
-      </div>
+    <section class="grid">
+      <article class="card currency-card">
+        <div class="card-header">
+          <div>
+            <span class="icon">💱</span>
+            <h3>Currency Converter</h3>
+            <p>Live market reference rate</p>
+          </div>
+          <span id="rateStatus" class="status">Loading…</span>
+        </div>
+
+        <div class="converter">
+          <label>
+            Amount
+            <input id="amount" type="number" min="0" step="0.01" value="100">
+          </label>
+          <label>
+            From
+            <select id="fromCurrency">
+              <option value="EUR">🇪🇺 EUR — Euro</option>
+              <option value="INR">🇮🇳 INR — Indian Rupee</option>
+              <option value="USD">🇺🇸 USD — US Dollar</option>
+              <option value="GBP">🇬🇧 GBP — Pound</option>
+            </select>
+          </label>
+          <button id="swap" class="swap" aria-label="Swap currencies">⇄</button>
+          <label>
+            To
+            <select id="toCurrency">
+              <option value="INR">🇮🇳 INR — Indian Rupee</option>
+              <option value="EUR">🇪🇺 EUR — Euro</option>
+              <option value="USD">🇺🇸 USD — US Dollar</option>
+              <option value="GBP">🇬🇧 GBP — Pound</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="conversion-result">
+          <span id="resultLabel">€100.00 EUR</span>
+          <strong id="result">Loading…</strong>
+          <small id="rateText">Fetching current reference rate…</small>
+        </div>
+        <p class="fine-print">Rates are for reference only. Your bank/card provider may use a different rate or add fees.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <span class="icon">📢</span>
+            <h3>Community Announcements</h3>
+            <p>Latest updates and notices</p>
+          </div>
+          <a href="#announcements" class="text-link">View all</a>
+        </div>
+        <div id="announcements" class="list"></div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <span class="icon">📅</span>
+            <h3>Upcoming Events</h3>
+            <p>Things happening in the community</p>
+          </div>
+          <a href="#events" class="text-link">View all</a>
+        </div>
+        <div id="events" class="events"></div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <span class="icon">🚀</span>
+            <h3>What's Coming</h3>
+            <p>The dashboard will keep growing</p>
+          </div>
+        </div>
+        <div class="feature-list">
+          <div><span>⚽</span><div><strong>Sports</strong><small>Football, cricket and more</small></div></div>
+          <div><span>🌤️</span><div><strong>Weather</strong><small>Local weather at a glance</small></div></div>
+          <div><span>📰</span><div><strong>News &amp; Updates</strong><small>Useful community information</small></div></div>
+          <div><span>🧮</span><div><strong>Calculators</strong><small>Loans, salary and everyday tools</small></div></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="info-strip">
+      <div>💡 <strong>Have an idea?</strong> More widgets can be added without changing the overall dashboard design.</div>
+      <div class="pill">euro2rupee.net</div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      <p>© 2026 Euro2Rupee.com · Currency conversion made simple.</p>
-    </div>
+    <span>© <span id="year"></span> Euro2Rupee</span>
+    <span>Built for the community</span>
   </footer>
 
   <script src="script.js"></script>

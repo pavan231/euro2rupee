@@ -1,42 +1,37 @@
-# Euro2Rupee
+# Euro2Rupee Community Dashboard
 
-A simple, responsive currency conversion website for **Euro to Indian Rupee (EUR → INR)** and other major currencies.
+A lightweight static dashboard designed for GitHub Pages.
 
-## Features
+## Included
 
-- EUR → INR conversion
-- USD, GBP, AUD, CAD and INR support
-- Live exchange rates
-- Currency swap button
-- Responsive/mobile-friendly design
-- No backend required
-- Works with GitHub Pages
-
-## Run locally
-
-Simply open `index.html` in a browser.
+- EUR / INR / USD / GBP currency converter
+- Live reference rates using the public Frankfurter API
+- Community announcements widget
+- Upcoming events widget
+- Future-widget roadmap
+- Responsive desktop and mobile layout
 
 ## Deploy to GitHub Pages
 
-1. Upload all files to your GitHub repository.
-2. Open **Settings → Pages**.
-3. Under **Build and deployment**, choose:
-   - Source: **Deploy from a branch**
-   - Branch: **main**
-   - Folder: **/ (root)**
-4. Save.
-5. GitHub will provide your website URL.
+1. Copy these files into the root of your `euro2rupee` repository.
+2. Commit and push.
+3. In GitHub go to **Settings → Pages**.
+4. Select your branch/root folder if it is not already configured.
+5. Keep your custom domain as `euro2rupee.net`.
 
-## Exchange rate API
+## Updating announcements and events
 
-This project uses the Frankfurter API for exchange rates:
+Edit the `announcements` and `events` arrays near the top of `script.js`.
 
-https://www.frankfurter.app/
+## Next development ideas
 
-For production use, check the API's current terms, availability and supported currencies.
+- Admin page for announcements/events
+- Sports widget
+- Dublin weather widget
+- Public holidays
+- News/community updates
+- Currency history chart
+- Loan and salary calculators
+- User-selectable dashboard widgets
 
-## Domain
-
-For a domain such as `euro2rupee.com`, configure your custom domain under:
-
-GitHub repository → Settings → Pages → Custom domain
+The site is intentionally static for the first version, so it can run directly from GitHub Pages without a backend.
