@@ -1,115 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Euro2Rupee Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Euro2Rupee Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.events-scroll{max-height:330px;overflow-y:auto;padding-right:6px;margin-top:8px}
+.event-card{display:block;text-decoration:none;color:inherit;border:1px solid #e7ebf2;border-radius:12px;padding:13px;margin:9px 0;background:#fbfcfe;transition:.15s}
+.event-card:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(20,35,60,.08)}
+.event-title{font-weight:750;font-size:14px;line-height:1.35}
+.event-meta{font-size:11px;color:#64748b;margin-top:5px}
+.event-tag{display:inline-block;font-size:10px;padding:4px 7px;border-radius:99px;background:#eef2ff;color:#3730a3;margin-bottom:7px}
+.events-footer{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px}
+.events-footer a{font-size:12px;color:#1d4ed8;text-decoration:none;font-weight:650}
+.events-note{font-size:10px;color:#94a3b8}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo">€₹</div>
-      <div><strong>Euro2Rupee</strong><span>Community Dashboard</span></div>
-    </div>
-    <div class="header-actions">
-      <button class="icon-btn" aria-label="Search">⌕</button>
-      <button class="menu-btn" onclick="toggleMenu()">☰</button>
-    </div>
-  </header>
+<header class="topbar">
+  <div class="brand"><div class="logo">€₹</div><div><strong>Euro2Rupee</strong><span>Community Dashboard</span></div></div>
+  <div class="header-actions"><button class="icon-btn">⌕</button><button class="menu-btn" onclick="toggleMenu()">☰</button></div>
+</header>
+<nav id="mobileMenu" class="mobile-menu">
+<a href="#currency">Currency</a><a href="#events">Events</a><a href="#ireland">Ireland</a><a href="#sports">Sports</a><a href="#weather">Weather</a><a href="#tools">Tools</a>
+</nav>
+<main class="container">
+<section class="hero"><div><p class="eyebrow">WELCOME</p><h1>Your everyday dashboard</h1><p>Currency, community events, Ireland information, sports and useful tools in one place.</p></div><div class="date-card"><span id="dayName"></span><strong id="todayDate"></strong></div></section>
+<section class="grid">
+<article class="card currency-card" id="currency">
+<div class="card-head"><h2>💶 EUR → INR</h2><span class="badge">Converter</span></div>
+<p class="muted">Enter an amount to convert euros to Indian rupees.</p>
+<div class="converter"><div class="input-wrap"><label>EUR</label><input id="eurInput" type="number" value="100" min="0" step="0.01" oninput="convert()"></div><div class="equals">=</div><div class="result-wrap"><label>INR</label><div id="inrResult" class="result">₹0.00</div></div></div>
+<div class="quick-values"><button onclick="setEUR(1)">€1</button><button onclick="setEUR(10)">€10</button><button onclick="setEUR(100)">€100</button><button onclick="setEUR(1000)">€1,000</button></div>
+<p class="rate">Demo rate: <strong>€1 = ₹102.00</strong> <span>• Update with a live API later</span></p>
+</article>
 
-  <nav id="mobileMenu" class="mobile-menu">
-    <a href="#currency">Currency</a>
-    <a href="#events">Events</a>
-    <a href="#ireland">Ireland</a>
-    <a href="#sports">Sports</a>
-    <a href="#weather">Weather</a>
-    <a href="#tools">Tools</a>
-  </nav>
+<article class="card" id="events">
+<div class="card-head"><h2>📅 Dublin Telugu Events</h2><span class="badge green">Eventbrite</span></div>
+<p class="muted">Telugu and related community events in Dublin.</p>
+<div class="events-scroll">
+<a class="event-card" href="https://www.eventbrite.ie/e/mass-jathara-the-ultimate-tollywood-dj-night-tickets-2000950476740" target="_blank" rel="noopener">
+<span class="event-tag">TELUGU • MUSIC</span><div class="event-title">MASS JATHARA – THE ULTIMATE TOLLYWOOD DJ NIGHT</div>
+<div class="event-meta">📅 Fri, 23 Oct 2026 • 10 PM – 3 AM<br>📍 Soho Dublin</div></a>
+<a class="event-card" href="https://www.eventbrite.ie/d/ireland--dublin/telugu/" target="_blank" rel="noopener">
+<span class="event-tag">TELUGU</span><div class="event-title">More Dublin Telugu events</div>
+<div class="event-meta">Open the Eventbrite Telugu search for the latest listings.</div></a>
+<a class="event-card" href="https://www.eventbrite.ie/d/ireland--dublin/events/" target="_blank" rel="noopener">
+<span class="event-tag">DUBLIN</span><div class="event-title">More Dublin community events</div>
+<div class="event-meta">Browse all current Dublin Eventbrite listings.</div></a>
+</div>
+<div class="events-footer"><span class="events-note">Listings link to Eventbrite for current details.</span><a href="https://www.eventbrite.ie/d/ireland--dublin/telugu/" target="_blank" rel="noopener">View all →</a></div>
+</article>
 
-  <main class="container">
-    <section class="hero">
-      <div>
-        <p class="eyebrow">WELCOME</p>
-        <h1>Your everyday dashboard</h1>
-        <p>Currency, community events, Ireland information, sports and useful tools in one place.</p>
-      </div>
-      <div class="date-card">
-        <span id="dayName"></span>
-        <strong id="todayDate"></strong>
-      </div>
-    </section>
+<article class="card" id="ireland"><div class="card-head"><h2>🇮🇪 Ireland</h2><span class="badge">Information</span></div>
+<div class="list-item"><span>📢</span><div><strong>Community announcements</strong><p>Local notices and useful updates</p></div></div>
+<div class="list-item"><span>📆</span><div><strong>Public holidays</strong><p>Keep important dates in one place</p></div></div>
+<div class="list-item"><span>🔗</span><div><strong>Useful services</strong><p>Quick links to official resources</p></div></div></article>
 
-    <section class="grid">
-      <article class="card currency-card" id="currency">
-        <div class="card-head"><h2>💶 EUR → INR</h2><span class="badge">Converter</span></div>
-        <p class="muted">Enter an amount to convert euros to Indian rupees.</p>
-        <div class="converter">
-          <div class="input-wrap"><label>EUR</label><input id="eurInput" type="number" value="100" min="0" step="0.01" oninput="convert()"></div>
-          <div class="equals">=</div>
-          <div class="result-wrap"><label>INR</label><div id="inrResult" class="result">₹0.00</div></div>
-        </div>
-        <div class="quick-values">
-          <button onclick="setEUR(1)">€1</button><button onclick="setEUR(10)">€10</button>
-          <button onclick="setEUR(100)">€100</button><button onclick="setEUR(1000)">€1,000</button>
-        </div>
-        <p class="rate">Demo rate: <strong>€1 = ₹102.00</strong> <span>• Update with a live API later</span></p>
-      </article>
+<article class="card" id="sports"><div class="card-head"><h2>⚽ Sports</h2><span class="badge orange">Upcoming</span></div>
+<div class="score"><span>⚽ Football</span><strong>Upcoming matches</strong></div><div class="score"><span>🏏 Cricket</span><strong>Fixtures & results</strong></div><div class="score"><span>🏉 Rugby</span><strong>Fixtures & results</strong></div><button class="outline-btn">Open sports →</button></article>
 
-      <article class="card events-card" id="events">
-        <div class="card-head"><h2>📅 Telugu Community Events</h2><span class="badge green">Eventbrite • Dublin</span></div>
-        <p class="muted">Live Eventbrite results for Telugu events in Dublin. Scroll inside the widget.</p>
-        <div class="eventbrite-frame">
-          <iframe src="https://www.eventbrite.ie/d/ireland--dublin/telugu/" title="Dublin Telugu events on Eventbrite" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          <div class="iframe-fallback">
-            <strong>Having trouble loading the Eventbrite panel?</strong>
-            <a href="https://www.eventbrite.ie/d/ireland--dublin/telugu/" target="_blank" rel="noopener">Open Dublin Telugu events on Eventbrite ↗</a>
-          </div>
-        </div>
-      </article>
+<article class="card" id="weather"><div class="card-head"><h2>🌤️ Dublin Weather</h2><span class="badge blue">Today</span></div>
+<div class="weather-main"><div class="weather-icon">☁️</div><div><strong>12°C</strong><p>Cloudy</p></div></div>
+<div class="weather-row"><span>💧 Humidity</span><b>76%</b></div><div class="weather-row"><span>💨 Wind</span><b>18 km/h</b></div><p class="rate">Demo weather • Connect a weather API for live data.</p></article>
 
-      <article class="card" id="ireland">
-        <div class="card-head"><h2>🇮🇪 Ireland</h2><span class="badge">Information</span></div>
-        <div class="list-item"><span>📢</span><div><strong>Community announcements</strong><p>Local notices and useful updates</p></div></div>
-        <div class="list-item"><span>📆</span><div><strong>Public holidays</strong><p>Keep important dates in one place</p></div></div>
-        <div class="list-item"><span>🔗</span><div><strong>Useful services</strong><p>Quick links to official resources</p></div></div>
-      </article>
-
-      <article class="card" id="sports">
-        <div class="card-head"><h2>⚽ Sports</h2><span class="badge orange">Upcoming</span></div>
-        <div class="score"><span>⚽ Football</span><strong>Upcoming matches</strong></div>
-        <div class="score"><span>🏏 Cricket</span><strong>Fixtures & results</strong></div>
-        <div class="score"><span>🏉 Rugby</span><strong>Fixtures & results</strong></div>
-        <button class="outline-btn">Open sports →</button>
-      </article>
-
-      <article class="card" id="weather">
-        <div class="card-head"><h2>🌤️ Dublin Weather</h2><span class="badge blue">Today</span></div>
-        <div class="weather-main"><div class="weather-icon">☁️</div><div><strong>12°C</strong><p>Cloudy</p></div></div>
-        <div class="weather-row"><span>💧 Humidity</span><b>76%</b></div>
-        <div class="weather-row"><span>💨 Wind</span><b>18 km/h</b></div>
-        <p class="rate">Demo weather • Connect a weather API for live data.</p>
-      </article>
-
-      <article class="card" id="tools">
-        <div class="card-head"><h2>🧮 Useful Tools</h2><span class="badge purple">Tools</span></div>
-        <div class="tools-grid">
-          <button onclick="toolMessage('Percentage Calculator')">%</button>
-          <button onclick="toolMessage('Age Calculator')">🎂</button>
-          <button onclick="toolMessage('Unit Converter')">📏</button>
-          <button onclick="toolMessage('Time Zone Converter')">🌍</button>
-        </div>
-        <div id="toolMessage" class="tool-message">Choose a tool to add it to your dashboard.</div>
-      </article>
-    </section>
-
-    <section class="add-widget">
-      <div><strong>💡 More widgets coming</strong><p>Travel, school events, local services, calculators and more.</p></div>
-      <button onclick="alert('Widget ideas can be added here.')">Suggest a widget</button>
-    </section>
-  </main>
-
-  <footer>© <span id="year"></span> Euro2Rupee.net • Community Dashboard</footer>
-  <script src="script.js"></script>
-</body>
-</html>
+<article class="card" id="tools"><div class="card-head"><h2>🧮 Useful Tools</h2><span class="badge purple">Tools</span></div>
+<div class="tools-grid"><button onclick="toolMessage('Percentage Calculator')">%</button><button onclick="toolMessage('Age Calculator')">🎂</button><button onclick="toolMessage('Unit Converter')">📏</button><button onclick="toolMessage('Time Zone Converter')">🌍</button></div>
+<div id="toolMessage" class="tool-message">Choose a tool to add it to your dashboard.</div></article>
+</section>
+<section class="add-widget"><div><strong>💡 More widgets coming</strong><p>Travel, school events, local services, calculators and more.</p></div><button onclick="alert('Widget ideas can be added here.')">Suggest a widget</button></section>
+</main>
+<footer>© <span id="year"></span> Euro2Rupee.net • Community Dashboard</footer>
+<script src="script.js"></script>
+</body></html>

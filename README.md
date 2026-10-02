@@ -1,17 +1,15 @@
 # Euro2Rupee Community Dashboard
 
-A responsive GitHub Pages dashboard for euro2rupee.net.
+Updated version with a native, scrollable Dublin Telugu Events widget.
 
-## Included
-- EUR → INR converter (demo rate)
-- Community events
-- Ireland information
-- Sports widget
-- Dublin weather widget (demo)
-- Useful tools section
-- Responsive mobile layout
+The dashboard does NOT iframe Eventbrite because Eventbrite refuses iframe embedding. Instead, the widget uses native event cards and links to Eventbrite for the current event details.
 
-## Deploy
-Upload `index.html`, `style.css`, and `script.js` to the root of your GitHub repository.
+Current featured listing:
+- MASS JATHARA – THE ULTIMATE TOLLYWOOD DJ NIGHT
+- Friday 23 October 2026, 10 PM–3 AM
+- Soho Dublin
 
-The next step can be connecting live APIs for exchange rates, weather, sports and real Dublin/community events.
+For the latest listings, use the "View all" link:
+https://www.eventbrite.ie/d/ireland--dublin/telugu/
+
+Upload index.html, style.css and script.js to the root of the GitHub Pages repository.
