@@ -1,15 +1,20 @@
-# Euro2Rupee Community Dashboard
+# Euro2Rupee Live Dashboard
 
-Updated version with a native, scrollable Dublin Telugu Events widget.
+This version makes the currency converter live.
 
-The dashboard does NOT iframe Eventbrite because Eventbrite refuses iframe embedding. Instead, the widget uses native event cards and links to Eventbrite for the current event details.
+Currency:
+- Uses Frankfurter's public exchange-rate API.
+- Refreshes every 15 minutes.
+- Supports EUR/INR and reverse conversion.
+- Shows the latest rate timestamp.
+- No API key is embedded.
 
-Current featured listing:
-- MASS JATHARA – THE ULTIMATE TOLLYWOOD DJ NIGHT
-- Friday 23 October 2026, 10 PM–3 AM
-- Soho Dublin
+Sports:
+- Loads sports.json so the page remains static/GitHub Pages compatible.
+- Can be replaced by the GitHub Actions RSS updater from the previous version.
 
-For the latest listings, use the "View all" link:
-https://www.eventbrite.ie/d/ireland--dublin/telugu/
+Events:
+- Uses native scrolling links to the Eventbrite Dublin Telugu search because Eventbrite blocks iframe embedding.
 
-Upload index.html, style.css and script.js to the root of the GitHub Pages repository.
+Upload all four files to the repository root:
+index.html, style.css, script.js, sports.json
