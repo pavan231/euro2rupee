@@ -35,3 +35,13 @@ function filterSports(c,b){document.querySelectorAll(".tabs button").forEach(x=>
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function tick(){document.getElementById("clock").textContent=new Date().toLocaleString("en-IE",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}
 tick();setInterval(tick,30000);loadRate();setInterval(loadRate,900000);loadSports();setInterval(loadSports,1800000);document.getElementById("year").textContent=new Date().getFullYear();
+if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("/sw.js"));
+const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+let installPrompt=null;const installBtn=document.getElementById("installBtn");
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;installBtn.hidden=false});
+installBtn.onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installBtn.hidden=true};
+window.addEventListener("appinstalled",()=>{installBtn.hidden=true});
+if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone&&!localStorage.getItem("iosTipDismissed")){
+  document.getElementById("iosTip").hidden=false;
+  document.getElementById("iosTipClose").onclick=()=>{document.getElementById("iosTip").hidden=true;localStorage.setItem("iosTipDismissed","1")};
+}

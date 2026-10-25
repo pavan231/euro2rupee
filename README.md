@@ -34,3 +34,10 @@ Firebase setup (one time, free Spark plan):
 5. Firestore Database → Create database (production mode), then Rules → paste firestore.rules → Publish.
 
 Data layout: users/{uid} holds the profile, users/{uid}/events/{eventId} holds each date. firestore.rules only lets a signed-in user read or write their own documents.
+
+Mobile app (installable PWA):
+- Android / Chrome / Edge: an "📲 Install app" button appears in the header, or use the browser menu → Install app.
+- iPhone / iPad (Safari): Share → Add to Home Screen. A one-time tip explains this on iOS.
+- manifest.webmanifest + icons/ give the app name, icon and full-screen launch; sw.js caches the site so it opens offline.
+- Reminders are cached on the device by Firestore, so saved dates still show without signal.
+- When changing cached files, bump CACHE in sw.js (e2r-v1 → e2r-v2) so phones drop the old cache.

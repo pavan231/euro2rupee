@@ -1,15 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Euro2Rupee • Live Dashboard</title>
+<meta name="description" content="Live EUR/INR rates, your renewal reminders, sports and community events.">
+<meta name="theme-color" content="#172554">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Euro2Rupee">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="topbar"><div class="brand"><div class="logo">€₹</div><div><strong>Euro2Rupee</strong><span>Live Community Dashboard</span></div></div>
-<div class="top-right"><div id="account"></div><button class="menu-btn" onclick="document.body.classList.toggle('menu-open')">☰</button></div></header>
+<div class="top-right"><button class="btn" id="installBtn" hidden>📲 Install app</button><div id="account"></div><button class="menu-btn" onclick="document.body.classList.toggle('menu-open')">☰</button></div></header>
 <nav class="nav"><a href="#reminders">My Reminders</a><a href="#currency">Currency</a><a href="#events">Events</a><a href="#sports">Sports</a><a href="#weather">Weather</a><a href="#tools">Tools</a></nav>
 <main class="container">
+<div class="install-tip" id="iosTip" hidden><span>📲 Install Euro2Rupee: tap <b>Share</b> <span aria-hidden="true">⎋</span> then <b>Add to Home Screen</b>.</span><button class="dlg-close" id="iosTipClose" aria-label="Dismiss">✕</button></div>
 <section class="hero"><div><p class="eyebrow">LIVE DASHBOARD</p><h1>Your everyday information hub</h1><p>Live currency, sports, events and useful information.</p></div><div class="clock" id="clock"></div></section>
 <section class="grid">
 

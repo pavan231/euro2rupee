@@ -1,6 +1,6 @@
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import{getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,updateProfile,sendPasswordResetEmail,GoogleAuthProvider,signInWithPopup}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import{getFirestore,collection,doc,addDoc,updateDoc,deleteDoc,setDoc,getDoc,onSnapshot,query,orderBy,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import{initializeFirestore,persistentLocalCache,persistentMultipleTabManager,collection,doc,addDoc,updateDoc,deleteDoc,setDoc,getDoc,onSnapshot,query,orderBy,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import{firebaseConfig}from"./firebase-config.js";
 
 const $=id=>document.getElementById(id);
@@ -115,7 +115,7 @@ function authError(e){
   return{"auth/invalid-credential":"Email or password is incorrect.","auth/wrong-password":"Email or password is incorrect.","auth/user-not-found":"No account found for that email.",
     "auth/email-already-in-use":"An account already exists for that email. Try logging in.","auth/weak-password":"Password must be at least 6 characters.",
     "auth/invalid-email":"Please enter a valid email address.","auth/missing-password":"Please enter your password.","auth/too-many-requests":"Too many attempts. Please wait a few minutes and try again.",
-    "auth/popup-closed-by-user":"Google sign-in was cancelled.","auth/network-request-failed":"Network error. Check your connection."}[e.code]||"Something went wrong. Please try again.";
+    "auth/popup-closed-by-user":"Google sign-in was cancelled.","auth/popup-blocked":"Google sign-in could not open. Please log in with email and password.","auth/network-request-failed":"Network error. Check your connection."}[e.code]||"Something went wrong. Please try again.";
 }
 
 async function loadProfile(){
@@ -227,7 +227,7 @@ function wireUi(){
 
 function start(){
   const app=initializeApp(firebaseConfig);
-  auth=getAuth(app);db=getFirestore(app);
+  auth=getAuth(app);db=initializeFirestore(app,{localCache:persistentLocalCache({tabManager:persistentMultipleTabManager()})});
   wireUi();
   onAuthStateChanged(auth,async u=>{
     if(unsubEvents){unsubEvents();unsubEvents=null}
