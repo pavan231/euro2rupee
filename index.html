@@ -7,11 +7,16 @@
 </head>
 <body>
 <header class="topbar"><div class="brand"><div class="logo">€₹</div><div><strong>Euro2Rupee</strong><span>Live Community Dashboard</span></div></div>
-<button class="menu-btn" onclick="document.body.classList.toggle('menu-open')">☰</button></header>
-<nav class="nav"><a href="#currency">Currency</a><a href="#events">Events</a><a href="#sports">Sports</a><a href="#weather">Weather</a><a href="#tools">Tools</a></nav>
+<div class="top-right"><div id="account"></div><button class="menu-btn" onclick="document.body.classList.toggle('menu-open')">☰</button></div></header>
+<nav class="nav"><a href="#reminders">My Reminders</a><a href="#currency">Currency</a><a href="#events">Events</a><a href="#sports">Sports</a><a href="#weather">Weather</a><a href="#tools">Tools</a></nav>
 <main class="container">
 <section class="hero"><div><p class="eyebrow">LIVE DASHBOARD</p><h1>Your everyday information hub</h1><p>Live currency, sports, events and useful information.</p></div><div class="clock" id="clock"></div></section>
 <section class="grid">
+
+<article class="card wide" id="reminders">
+<div class="head"><h2>🔔 My Reminders</h2><span class="tag purple" id="remSummary">Private</span></div>
+<div id="remBody"><div class="loading">Loading…</div></div>
+</article>
 
 <article class="card currency" id="currency">
 <div class="head"><h2>💶 Live Currency</h2><span class="live"><i></i> LIVE</span></div>
@@ -49,5 +54,42 @@
 <p class="muted">More tools can be added as independent dashboard cards.</p></article>
 </section>
 </main><footer>© <span id="year"></span> Euro2Rupee.net • Live dashboard</footer>
+<dialog id="authDlg" class="dlg"><form id="authForm" novalidate>
+<button type="button" class="dlg-close" data-close>✕</button>
+<div class="tabs auth-tabs"><button type="button" data-mode="login">Log in</button><button type="button" data-mode="signup">Sign up</button></div>
+<label class="signup-only">Name<input name="displayName" autocomplete="name" maxlength="60"></label>
+<label>Email<input name="email" type="email" required autocomplete="email"></label>
+<label>Password<input name="password" type="password" required minlength="6" autocomplete="current-password"></label>
+<p class="form-msg" id="authMsg"></p>
+<button class="btn primary full" id="authSubmit">Log in</button>
+<button type="button" class="btn full" id="googleBtn">Continue with Google</button>
+<button type="button" class="link" id="forgotBtn">Forgot password?</button>
+</form></dialog>
+
+<dialog id="eventDlg" class="dlg"><form id="eventForm">
+<button type="button" class="dlg-close" data-close>✕</button>
+<h3 id="eventTitle">Add a date</h3>
+<label>What is it?<input name="title" required maxlength="120" placeholder="e.g. Car insurance renewal"></label>
+<div class="row2"><label>Category<select name="category" id="categorySelect"></select></label>
+<label>Due date<input name="dueDate" type="date" required></label></div>
+<div class="row2"><label>Repeats<select name="repeat"><option value="none">Does not repeat</option><option value="monthly">Every month</option><option value="yearly">Every year</option></select></label>
+<label>Remind me (days before)<input name="remindDays" type="number" min="0" max="365" placeholder="Default"></label></div>
+<label>Notes<textarea name="notes" rows="2" maxlength="500" placeholder="Policy number, provider, amount…"></textarea></label>
+<p class="form-msg" id="eventMsg"></p>
+<div class="dlg-actions"><button type="button" class="btn danger" id="deleteEvent">Delete</button><button class="btn primary">Save</button></div>
+</form></dialog>
+
+<dialog id="profileDlg" class="dlg"><form id="profileForm">
+<button type="button" class="dlg-close" data-close>✕</button>
+<h3>My profile</h3>
+<label>Name<input name="displayName" maxlength="60"></label>
+<label>Email<input name="email" readonly></label>
+<label>Default reminder window (days before due)<input name="remindDays" type="number" min="0" max="365" required></label>
+<p class="form-msg" id="profileMsg"></p>
+<button class="btn primary full">Save profile</button>
+<div class="dlg-actions"><button type="button" class="link" id="resetPwBtn">Send password reset email</button><button type="button" class="btn" id="signOutBtn">Sign out</button></div>
+</form></dialog>
+
 <script src="script.js"></script>
+<script type="module" src="reminders.js"></script>
 </body></html>
