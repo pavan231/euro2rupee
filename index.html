@@ -62,13 +62,14 @@
 <div class="tools"><button onclick="alert('Percentage calculator coming next')">%</button><button onclick="alert('Age calculator coming next')">🎂</button><button onclick="alert('Unit converter coming next')">📏</button><button onclick="alert('Time zone converter coming next')">🌍</button></div>
 <p class="muted">More tools can be added as independent dashboard cards.</p></article>
 </section>
-</main><footer>© <span id="year"></span> Euro2Rupee.net • Live dashboard</footer>
+</main><footer>© <span id="year"></span> Euro2Rupee.net • Live dashboard • <a href="privacy.html">Privacy</a></footer>
 <dialog id="authDlg" class="dlg"><form id="authForm" novalidate>
 <button type="button" class="dlg-close" data-close>✕</button>
 <div class="tabs auth-tabs"><button type="button" data-mode="login">Log in</button><button type="button" data-mode="signup">Sign up</button></div>
 <label class="signup-only">Name<input name="displayName" autocomplete="name" maxlength="60"></label>
 <label>Email<input name="email" type="email" required autocomplete="email"></label>
 <label>Password<input name="password" type="password" required minlength="6" autocomplete="current-password"></label>
+<p class="fine signup-only">By creating an account you agree to how we handle your data, described in our <a href="privacy.html" target="_blank">privacy notice</a>.</p>
 <p class="form-msg" id="authMsg"></p>
 <button class="btn primary full" id="authSubmit">Log in</button>
 <button type="button" class="btn full" id="googleBtn">Continue with Google</button>
@@ -83,9 +84,22 @@
 <label>Due date<input name="dueDate" type="date" required></label></div>
 <div class="row2"><label>Repeats<select name="repeat"><option value="none">Does not repeat</option><option value="monthly">Every month</option><option value="yearly">Every year</option></select></label>
 <label>Remind me (days before)<input name="remindDays" type="number" min="0" max="365" placeholder="Default"></label></div>
+<label>Amount (€, optional)<input name="amount" type="number" min="0" step="0.01" placeholder="e.g. 44.18"></label>
 <label>Notes<textarea name="notes" rows="2" maxlength="500" placeholder="Policy number, provider, amount…"></textarea></label>
 <p class="form-msg" id="eventMsg"></p>
 <div class="dlg-actions"><button type="button" class="btn danger" id="deleteEvent">Delete</button><button class="btn primary">Save</button></div>
+</form></dialog>
+
+<dialog id="templateDlg" class="dlg tpl-dlg"><form id="templateForm">
+<button type="button" class="dlg-close" data-close>✕</button>
+<h3>📋 Monthly bills template</h3>
+<p class="muted">Tick the bills you pay and set the day of the month and amount. They're added as monthly reminders that warn you 3 days before. You can edit or delete any of them later.</p>
+<div class="tpl-head"><span></span><span>Payment type</span><span>Day</span><span>Amount</span></div>
+<div id="templateRows" class="tpl-rows"></div>
+<button type="button" class="link" id="addTemplateRow">+ Add another bill</button>
+<div class="tpl-total"><span>Total monthly expenses</span><b id="templateTotal">€0.00</b></div>
+<p class="form-msg" id="templateMsg"></p>
+<div class="dlg-actions"><button type="button" class="btn" data-close>Cancel</button><button class="btn primary">Add selected bills</button></div>
 </form></dialog>
 
 <dialog id="profileDlg" class="dlg"><form id="profileForm">
@@ -97,6 +111,12 @@
 <p class="form-msg" id="profileMsg"></p>
 <button class="btn primary full">Save profile</button>
 <div class="dlg-actions"><button type="button" class="link" id="resetPwBtn">Send password reset email</button><button type="button" class="btn" id="signOutBtn">Sign out</button></div>
+<div class="danger-zone"><div class="dlg-actions"><button type="button" class="link" id="downloadBtn">Download my data</button><button type="button" class="link danger-link" id="deleteStart">Delete my account</button></div>
+<div id="deleteZone" hidden><p>This permanently deletes your account, profile and all your reminders. It can't be undone.</p>
+<label id="deletePwLabel">Confirm with your password<input id="deletePw" type="password" autocomplete="current-password"></label>
+<p class="form-msg" id="deleteMsg"></p>
+<div class="dlg-actions"><button type="button" class="btn" id="cancelDelete">Cancel</button><button type="button" class="btn danger" id="confirmDelete">Permanently delete</button></div></div>
+<p class="fine"><a href="privacy.html">Privacy notice</a></p></div>
 </form></dialog>
 
 <script src="script.js"></script>

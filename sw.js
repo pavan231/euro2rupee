@@ -1,5 +1,5 @@
-const CACHE="e2r-v1";
-const SHELL=["/","/index.html","/style.css","/script.js","/reminders.js","/firebase-config.js","/sports.json","/manifest.webmanifest","/icons/icon-192.png","/icons/apple-touch-icon.png"];
+const CACHE="e2r-v2";
+const SHELL=["/","/index.html","/privacy.html","/style.css","/script.js","/reminders.js","/firebase-config.js","/sports.json","/manifest.webmanifest","/icons/icon-192.png","/icons/apple-touch-icon.png"];
 
 self.addEventListener("install",e=>{
   e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()));
